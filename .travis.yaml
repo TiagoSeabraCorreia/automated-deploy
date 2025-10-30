@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t tiago/automated:latest -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true tiago/automated:latest npm run test -- --coverage
